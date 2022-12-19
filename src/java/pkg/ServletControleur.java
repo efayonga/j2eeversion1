@@ -105,7 +105,15 @@ public class ServletControleur extends HttpServlet {
                                 break;
                                 
                             case "/updateUser" :
-                                TraitementAccueil.updateContact(request, response);
+                                errorList = TraitementAccueil.checkModifValidity(request, response);
+                                if(errorList.isEmpty()){
+                                    TraitementAccueil.updateContact(request, response);
+                                }
+                                else{
+                                    request.setAttribute("ERRORS", errorList);
+                                    TraitementAccueil.sendToEditPage(request, response);
+                                }   
+                                
                                 break;
                                 
                             case "/createUser" :

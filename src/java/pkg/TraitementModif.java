@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TraitementModif {
     private static String jdbcURL = "jdbc:mysql://127.0.0.1:3306/Contacts";
     private static String jdbcUsername = "root";

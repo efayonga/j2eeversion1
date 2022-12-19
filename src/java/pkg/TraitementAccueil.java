@@ -22,7 +22,7 @@ import javax.servlet.RequestDispatcher;
 
 public class TraitementAccueil {
     static Contact getContactFromRequest(HttpServletRequest request){
-        String num = request.getParameter("numero");
+        String num = request.getParameter("NumeroDeContact");
         String name = request.getParameter("nom");
         String adresse = request.getParameter("adresse");
         String code_postal = request.getParameter("code_postal");
@@ -130,10 +130,18 @@ public class TraitementAccueil {
             }
         }
         
+        public static boolean checkCodeSecteurValidity(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException{
+            return !request.getParameter("code_secteur").equals("0");
+        }
+        
         public static List<String> checkModifValidity(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException{
             List<String> errors = new ArrayList<>();
             if(!checkCodePostalValidity(request, response)){
                 errors.add("Vous devez entrer un code postal valide. (Vous aviez entré : "+"\""+request.getParameter("code_postal")+"\""+")");
+            }
+            
+            if(!checkCodeSecteurValidity(request, response)){
+                errors.add("Vous devez entrer un code secteur.");
             }
             return errors;
         }
