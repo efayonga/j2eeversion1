@@ -90,7 +90,6 @@ public class TraitementAccueil {
 		Contact newContact = getContactFromRequest(request);
 		TraitementModif.updateContact(newContact);
 		SendToRecapPage(request, response);
-
 	}
 
 	public static void deleteContact(HttpServletRequest request, HttpServletResponse response) 
